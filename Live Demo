@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Web Security Demonstration</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; padding-bottom: 3rem; }
+        .demonstration {
+            background-color: #f9f9f9;
+            border-left: 4px solid #ff5500;
+            margin: 2rem 0;
+            padding: 1rem;
+            display: grid;
+            gap: .5rem;
+        }
+    </style>
+</head>
+<body>
+<header style="background-color: #fff; padding: 1.5rem;">
+    <h1>Security Demonstration Page</h1>
+    <p class="demo-note">Note: No actual exploitation occurs.</p>
+</header>
+<article>
+    <section class="demonstration">
+        <h2>Cross-Site Scripting (XSS)</h2>
+        <div style="border-bottom: 1px solid #e5e5e5; padding-bottom: .5rem;">
+            Enter your name:
+            <input type="text" id="nameInput" placeholder="Enter here">
+            <button onclick="demoCrossSite()">Submit</button>
+        </div>
+        
+        <!-- Output will be displayed here -->
+    </section>
+    <section class="demonstration">
+        <h2>SQL Injection Demonstration</h2>
+        <p style="font-weight: bold;">Search for user:</p>
+        <input type="text" id="searchInput" placeholder="Search...">
+        <button onclick="demoSqlInjection()">Search</button>
+        <!-- Output will be displayed here -->
+    </section>
+    <section class="demonstration">
+        <h2>HTTP Header Manipulation</h2>
+        <p style="font-weight: bold;">Request headers:</p>
+        
+        <div id="headers">
+            Accept-Language: en-US<br>
+            User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64)
+        </div>
+        <!-- This button demonstrates manipulation -->
+        <button onclick="demoHeaderManipulation()">Show manipulated headers</button>
+    </section>
+    
+    <footer style="font-size: .8em;">
+        This demonstration shows vulnerabilities without actual exploitation.
+    </footer>
+</article>
+<script>
+// Safe demonstration of XSS
+function demoCrossSite() {
+    const name = document.getElementById('nameInput').value;
+    // Only allows letters and spaces
+    if (/^[a-zA-Z\s]*$/.test(name)) {
+        alert(`Hello, ${name}!`);
+    } else {
+        alert("Invalid input.");
+    }
+}
+// Demo SQL injection prevention
+function demoSqlInjection() {
+    const query = document.getElementById('searchInput').value;
+    
+    // Proper handling of special characters
+    if (query.includes("'") || query.includes("--")) {
+        alert("Potential vulnerability detected!");
+    } else {
+        console.log(`Searching for: ${query}`);
+    }
+}
+// Demonstrate header manipulation without actual exploitation
+function demoHeaderManipulation() {
+    const originalHeaders = document.getElementById('headers');
+    
+    // Simulating language spoofing detection:
+    if (/^en-US/i.test(originalHeaders.textContent)) {
+        originalHeaders.innerHTML += "<br>Note: Your request appears to use English as primary.";
+        
+        // Demonstrating how a malicious value might be processed
+        if (originalHeaders.textContent.includes("Accept-Language")) {
+            console.log("%cSECURITY ALERT: Accept-Language header could reveal locale preferences", "color:red");
+        }
+    }
+}
+</script>
+</body>
+</html>
