@@ -1,5 +1,7 @@
-// Example function to manipulate DOM elements
-function greetUser() {
-  console.log('Hello user!');
+// No actual connection code - just simulation
+function simulateConnection() {
+    setTimeout(() => {
+        alert('Simulated Connection Successful!');
+    }, Math.random() * 3000);
 }
-greetUser();
+document.querySelector('.connect-btn').addEventListener('click', simulateConnection);
