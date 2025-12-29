@@ -1,7 +1,12 @@
-/* Basic styling */
 body {
-  font-family: Arial, sans-serif;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 2rem;
 }
 header {
-  background-color: #f8f9fa;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #e5e5e5;
+    padding: 2rem;
+    text-align: center;
 }
