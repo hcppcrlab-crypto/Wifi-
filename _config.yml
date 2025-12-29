@@ -1,0 +1,10 @@
+title: "Your Name"
+author: "Your Name"
+description: "A brief introduction about yourself."
+baseurl: ""                    # Leave empty for root domain
+# Jekyll settings
+permalink: /:year/:month/:day/:title.html
+paginate: 10                    # Number of posts per page
+# Social links (optional)
+github_username: yourusername
+linkedin_url: https://www.linkedin.com/in/your-profile-id/
